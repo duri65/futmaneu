@@ -1,0 +1,13 @@
+<h1>Prehľad</h1>
+<ul>
+    {% for plochy in hraciePlochy %}
+    <li>
+        <strong>{{ plochy.nazov }}</strong> - Rezervacia:
+        <ul>
+            {% for plocha in hraciePlochy.rezervacie_set.all %}
+            <li>{{ rezervacie.date }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>

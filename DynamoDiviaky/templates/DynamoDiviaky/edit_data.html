@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+{% block content %}
+<div class="container">
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn" type="submit">Ulož</button>
+    <button class="btn" type="submit" name="cancel" onclick="javascript:history.back();">Naspäť</button>
+</form>
+</div>
+{% endblock %}

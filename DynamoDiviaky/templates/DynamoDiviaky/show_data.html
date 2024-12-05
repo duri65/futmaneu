@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container"> 
+<h3>Kluboví hráči</h3>
+
+<!-- Filter form 
+<form method="get" action="{% url 'DynamoDiviaky:show_data' %}">
+    <input type="text" name="filter" placeholder="Tím" value="{{ request.GET.filter }}">
+    <button type="submit">Filter</button>
+</form>-->
+    <form method="GET">
+        {{ form }}
+        <input type=hidden name="ftim" value={{ request.GET.filter_tim }}>
+        <button type="submit">Filter</button>
+    </form>
+<!-- Master list -->
+{{ request.GET.filter_tim }}
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <th>P.č.</th>
+    <th>Meno</th>
+    <th>Priezvisko</th>
+    <th>Aktivita</th>
+    <th>Tím</th>
+    <th>Rok nar.</th>
+    {% for value in data %}
+  </thead>
+    <tr>
+    <td><a href="/edit_data/{{ value.id }} " >{{ forloop.counter }}</a></td><td><a href="/edit_data/{{ value.id }} " >{{ value.meno }}</a></td><td><a href="/edit_data/{{ value.id }}" >{{ value.priezvisko }}</td></a><td>{{ value.aktivita }}</td><td>{{ value.tim.nazov }}</td><td>{{ value.datum_narodenia|date:'Y' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+<!-- Detail view -->
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Rezervácie ihrísk</h3>
+
+<!-- Filter form -->
+<form method="get" action="{% url 'DynamoDiviaky:rez_list' %}">
+    <input type="text" name="filter" placeholder="Dátum" value="{{ request.GET.filter }}">
+    <button type="submit">Filter</button>
+</form>
+<!-- Master list -->
+<table class="table table-striped">
+  <thead class="thead-dark">    
+    <th>Dátum</th>
+    <th>Tím</th>
+    <th>Miesto</th>
+    <th>Typ</th>
+    {% for value in rezervacia %}
+  </thead>
+    <tr>
+    <td> {{ value.date|date:"d.m. Y" }}<br>{{ value.start_time|date:"G:i" }} - {{ value.end_time|date:"G:i" }}</td><td>{{ value.skratka }}</td><td>{{ value.ihrisko }}</td><td>{{ value.typ }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Detail view -->
+
+{% endblock %}

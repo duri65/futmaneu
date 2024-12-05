@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Dynamo Diviaky</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.sortable').click(function() {
+                var column = $(this).data('column');
+                var currentSort = $(this).data('sort');
+                var newSort = currentSort === 'asc' ? 'desc' : 'asc';
+
+                // Update the URL with the sorting parameter
+                var url = window.location.href.split('?')[0];
+                url += '?sort_by=' + column + '&sort=' + newSort;
+                window.location.href = url;
+            });
+        });
+    </script>
+    <style>
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'DynamoDiviaky:home' %}">Dynamo Diviaky</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'DynamoDiviaky:rez_list' %}">Prehľad
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+            <a class="nav-link" href="{% url 'DynamoDiviaky:create_reservation' %}">Rezervuj</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Page Content -->
+{% block content %}
+{% endblock %}
+</body>
+
+</html>

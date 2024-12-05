@@ -1,0 +1,11 @@
+
+{% block content %}
+    <!-- Additional content for your custom login page -->
+    <h2>Custom Login Page</h2>
+    <form method="post">
+        <!-- Add your custom form fields here -->
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log in</button>
+    </form>
+{% endblock %}

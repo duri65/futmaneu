@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h1>Prehľad</h1>
+<ul>
+    {% for rezervacia in rezervacie %}
+    <li>
+        <strong>{{ rezervacia.date }}</strong> - Hracia Plocha:
+        <ul>
+            {% for plocha in rezervacia.hracieplochy_id.all %}
+            <li>{{ plocha.nazov }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
